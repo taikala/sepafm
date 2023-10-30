@@ -5,7 +5,7 @@ class DanskeGetBankCertTest < ActiveSupport::TestCase
     @get_bank_cert_params = {
       bank: :danske,
       command: :get_bank_certificate,
-      bank_root_cert_serial: '1111110002',
+      bank_root_cert_serial: '1111110003',
       customer_id: '360817',
       request_id: SecureRandom.hex(5),
     }
