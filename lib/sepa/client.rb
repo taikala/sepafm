@@ -11,12 +11,12 @@ module Sepa
     # The bank that is used in this client. One of {BANKS}.
     #
     # @return [Symbol]
-    attr_accessor :bank
+    attr_reader :bank
 
     # The command that is used with this client. One of {AttributeChecks#allowed_commands}.
     #
     # @return [Symbol]
-    attr_accessor :command
+    attr_reader :command
 
     # The payload in base64 encoded form. Used with upload file command.
     #
@@ -43,7 +43,7 @@ module Sepa
     # The environment to be used. One of {ENVIRONMENTS}.
     #
     # @return [Symbol]
-    attr_accessor :environment
+    attr_reader :environment
 
     # File reference number used in download_file requests.
     #
@@ -176,6 +176,11 @@ module Sepa
     #
     # @return [Hash]
     attr_accessor :savon_options
+
+    # The sent SOAP. This is useful for debugging purposes.
+    #
+    # @return [SoapBuilder]
+    attr_reader :soap
 
     # The list of banks that are currently supported by this gem
     BANKS = %i(
@@ -359,7 +364,9 @@ module Sepa
       end
 
       def savon_locals
-        { xml: SoapBuilder.new(create_hash).to_xml }.merge(savon_options[:locals] || {})
+        @soap = SoapBuilder.new(create_hash).to_xml
+
+        { xml: @soap }.merge(savon_options[:locals] || {})
       end
   end
 end
