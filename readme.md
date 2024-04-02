@@ -1,4 +1,4 @@
-# Ahkio / SEPA
+# Devlab / SEPA
 
 This project aims to create an open source implementation of SEPA Financial Messages using Web Services. Project implementation is done in Ruby.
 
